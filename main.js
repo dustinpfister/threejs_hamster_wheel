@@ -5,6 +5,14 @@ var scene = new THREE.Scene();
 var wheel = new HamsterWheel();
 scene.add(wheel.group);
 
+// GUY
+
+var guy = new Guy();
+guy.group.scale.set(.5, .5, .5);
+guy.group.position.set(0,  - .4, -1);
+guy.group.rotation.set(0, Math.PI / 2, 0)
+scene.add(guy.group);
+
 // CAMERA
 var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
 camera.position.set(10, 10, 10);
@@ -29,6 +37,9 @@ var loop = function () {
     requestAnimationFrame(loop);
 
     wheel.wheel.rotation.z = r;
+    guy.moveLegs(per * 8);
+    guy.moveArm('arm_right',  - .1 + .2 * bias, 0);
+    guy.moveArm('arm_left', .1 - .2 * bias, 0);
 
     renderer.render(scene, camera);
 
