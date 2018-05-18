@@ -19,7 +19,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(800, 600);
 document.body.appendChild(renderer.domElement);
 
-var frame = 0, maxFrame = 100;
+var frame = 0, maxFrame = 200;
 var loop = function () {
 
     var per = frame / maxFrame,
@@ -27,6 +27,8 @@ var loop = function () {
     r = Math.PI * 2 * per;
 
     requestAnimationFrame(loop);
+
+    wheel.wheel.rotation.z = r;
 
     renderer.render(scene, camera);
 
