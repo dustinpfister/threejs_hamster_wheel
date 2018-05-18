@@ -15,12 +15,14 @@ scene.add(guy.group);
 
 // CAMERA
 var camera = new THREE.PerspectiveCamera(50, 8 / 6, .05, 100);
-camera.position.set(10, 10, 10);
+camera.position.set(5, 5, 5);
 camera.lookAt(0, 0, 0);
 camera.add(new THREE.PointLight());
 scene.add(camera);
 
-new THREE.OrbitControls(camera);
+var controls = new THREE.OrbitControls(camera);
+controls.autoRotate = true;
+
 
 // RENDER
 var renderer = new THREE.WebGLRenderer();
@@ -41,6 +43,7 @@ var loop = function () {
     guy.moveArm('arm_right',  - .1 + .2 * bias, 0);
     guy.moveArm('arm_left', .1 - .2 * bias, 0);
 
+	controls.update();
     renderer.render(scene, camera);
 
     frame += 1;
