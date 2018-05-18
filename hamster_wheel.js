@@ -1,5 +1,10 @@
 var HamsterWheel = (function () {
 
+    var material = new THREE.MeshStandardMaterial({
+
+        color: 0xafafaf
+    });
+
     // the Wheel constructor
     var Wheel = function () {
 
@@ -24,10 +29,7 @@ var HamsterWheel = (function () {
 
                     geo,
 
-                    new THREE.MeshBasicMaterial({
-
-                        color: 0x00ff00
-                    }));
+                    material);
             rim.position.set(0, 0, -2 + 2 * i);
 
             this.wheel.add(rim);
@@ -36,10 +38,7 @@ var HamsterWheel = (function () {
 
                     new THREE.CylinderGeometry(.125, .125, 4),
 
-                    new THREE.MeshBasicMaterial({
-
-                        color: 0x00ff00
-                    }));
+                    material);
             bar.position.set(0, 0, -2 + 2 * i);
 
             this.wheel.add(bar);
@@ -59,10 +58,7 @@ var HamsterWheel = (function () {
 
                     new THREE.CylinderGeometry(.125, .125, 2),
 
-                    new THREE.MeshBasicMaterial({
-
-                        color: 0x00ff00
-                    }));
+                    material);
             cy.rotation.x = Math.PI / 2;
 
             cy.position.x = Math.cos(r) * 2;
@@ -76,8 +72,7 @@ var HamsterWheel = (function () {
         }
 
         // BASE
-        var parts = [
-            {
+        var parts = [{
                 len: 1,
                 rx: Math.PI / 2,
                 rz: 0,
@@ -134,10 +129,7 @@ var HamsterWheel = (function () {
 
                         new THREE.CylinderGeometry(.125, .125, part.len),
 
-                        new THREE.MeshBasicMaterial({
-
-                            color: 0xff0000
-                        }));
+                        material);
                 cy.rotation.x = part.rx;
                 cy.rotation.z = part.rz;
                 cy.position.set(
