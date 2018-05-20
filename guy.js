@@ -112,7 +112,7 @@ var Guy = (function () {
                 new THREE.BoxGeometry(.5, 2, .5),
                 material_leg);
         this.leg_left.geometry.translate(0, -1, 0);
-        this.leg_left.position.x =  -.35;
+        this.leg_left.position.x =  - .35;
         this.leg_left.position.y = -1.1;
         this.leg_left.castShadow = true;
         this.group.add(this.leg_left);
@@ -157,6 +157,21 @@ var Guy = (function () {
         this.leg_right.rotation.set( - .75 + bias * 1.5, 0, 0);
 
     };
+
+    Guy.prototype.walk = function (per, swings) {
+
+        per = per === undefined ? 0 : per;
+        swings = swings === undefined ? 1 : swings;
+
+        var r = Math.PI * 2 * per;
+        var armPer = Math.cos(r * swings) + 1 / 2;
+
+        this.moveArm('arm_right',  - .1 + .2 * armPer, 0);
+        this.moveArm('arm_left', .1 - .2 * armPer, 0);
+
+        this.moveLegs(per * swings);
+
+    }
 
     // just return an instance of guy for now
     return Guy;
